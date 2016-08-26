@@ -1,3 +1,6 @@
+//track whether the user ha logged in
+var loggedIn = false;
+
 var baseURL = "https://accounts.google.com/o/oauth2/auth";
 var clientID = "715393641613-h6qvdb3ev8p7co0mhdh6l02fuf49fgsc.apps.googleusercontent.com";
 var redirectURI = "http%3A%2F%2Flocalhost%2Fauto-play-2.0%2F";
@@ -8,14 +11,11 @@ var tUrl = baseURL+"?client_id="+clientID+"&redirect_uri="+redirectURI+"&respons
 var response = window.location.hash;
 var token;
 
-if (response == "") {
-  //client hasn't been authorised
-  //probably want to change this to show a login page
-  getToken();
-} else {
+if (response != "") {
   //client has been authorised
   if (response.slice(response.indexOf("=")-1) == "access_denied") {
     //access was denied
+    alert("Access Denied"); //change to something better
   } else {
     //validate the users token
     token = response.slice(response.indexOf("=")+1, response.indexOf("&"));
@@ -26,14 +26,35 @@ if (response == "") {
       if (userData.error != null) {
         //token is invalid
         getToken();
+      } else {
+        loggedIn=true;
+        $(".login").hide();
       }
     }).error(function () {
       //error with the request we probably need a new token
-      getToken();
+      loggedIn=false;
+      alert("Error Loging in"); // change to something better
     });
   }
 }
 
 function getToken() {
   window.location.href=tUrl;
+}
+
+function toggleFilters() {
+  html = $("#filterbutton").html();
+  if (html == "[+]") {
+    $("#filterbutton").html("[-]");
+  } else {
+    $("#filterbutton").html("[+]");
+  }
+  $("#filters").toggle();
+}
+
+//get videos
+if (loggedIn) {
+  //pull the users videos
+} else {
+  //pull popular videos
 }

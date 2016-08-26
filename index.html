@@ -3,10 +3,22 @@
 <html>
 <head>
 	<title>Auto Play 2.0</title>
-</head>
-<body>
-
 	<script type = "text/Javascript" src = "http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src = "script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Auto Play 2.0</h1>
+	<div class="login">
+		<h2>Please Log in to Get the Full Experience of Auto Play 2.0</h2>
+		<button onclick="getToken()">Login Using Google</button>
+	</div>
+	<h3>Filters <a id="filterbutton" onclick="toggleFilters()" href="#">[-]</a></h3>
+	<div id="filters"><!--Where the filters are set-->
+		Example text
+	</div>
+	<div id="videos"><!--Where the videos are loaded-->
+		<h2>Videos</h2>
+	</div>
 </body>
 </html>
