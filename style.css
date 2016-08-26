@@ -2,6 +2,10 @@ body {
 	font-family: sans-serif;
 }
 
+.video {
+	margin: 25px;
+}
+
 /* unvisited link */
 #filterbutton:link {
     color: black;
